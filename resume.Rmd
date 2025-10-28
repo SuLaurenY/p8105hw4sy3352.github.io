@@ -1,9 +1,21 @@
 ---
-title: "Resume"
+title: "Su's Resume"
 ---
 
-### About this site
+### Education
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+**Columbia University**, Mailman School of Public Health, exp May 2027   
+Master of Science in Biostatistics  
+Coursework: Probability Theory, Data Science, Epidemiology  
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+### Skills
+**Technical**: R, Python, MS Excel (Vlookup, Solver), SAP  
+**Languages**: English (fluent, IELTS 8.0), Mandarin (native), Korean (TOPIK Level 5)  
+
+### Professional Experience
+**Siemens Healthineers**, Shanghai, China, Jun 2019 – Aug 2023  
+Senior Commercial Officer, Finance  
+• Managed 150+ annual contracts for MRI/CT medical equipment, overseeing pricing, internal approvals, negotiations, and customer training to ensure seamless service delivery.  
+•	Collaborated with sales, legal, finance, and marketing teams to negotiate terms and mitigate risks, including cross-border data security and regulatory compliance.  
+•	Led internal and customer price discussions, aligning proposals with Chinese healthcare spending trends and government reimbursement policies.  
+•	Produced financial analyses and operational reporting, including income forecasts, cash flow monitoring, receivables aging, and equipment cost analysis; improved regional accounts receivable forecast accuracy by 5%.
