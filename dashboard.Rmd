@@ -1,0 +1,11 @@
+---
+title: "Dashboard"
+---
+
+### About this site
+
+Create a flexdashboard using plotly for that includes at least three distinct plot types (e.g. scatterplots, line plots, bar plots, box plots, etc.). Use one of the following datasets, and load from the p8105.datasets package:
+
+Instacart
+NY NOAA
+NYC Restaurant Inspections
