@@ -1,7 +1,14 @@
 ---
-title: "Holy cow!"
+title: "Welcome to Su's Website"
 ---
 
-### I have a webpage!
+### Hi, I’m Su Yan, and I am studying Biostatistics at Columbia University!
 
-And I can put all kinds of stuff on it!
+This website is where you can find my academic and professional experiences, highlight selected projects, and provide ways to connect with me online.
+
+You can find my [resume](resume.html)  
+I made some dashboard for [NYC restaurant directory](dashboard.html)  
+If you are interested in more of my projects, here's my [GitHub](https://github.com/SuLaurenY)  
+My [linkedin](https://www.linkedin.com/in/su-yan-78b012124/)  
+
+You can also navigate using the menu above to learn more.
