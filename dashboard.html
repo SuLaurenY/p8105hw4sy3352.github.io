@@ -279,13 +279,46 @@ $(document).ready(function () {
 </div>
 
 
-<div id="about-this-site" class="section level3">
-<h3>About this site</h3>
-<p>Create a flexdashboard using plotly for that includes at least three
-distinct plot types (e.g. scatterplots, line plots, bar plots, box
-plots, etc.). Use one of the following datasets, and load from the
-p8105.datasets package:</p>
-<p>Instacart NY NOAA NYC Restaurant Inspections</p>
+<div id="nyc-restaurant-inspections" class="section level3">
+<h3>NYC Restaurant Inspections</h3>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ───────────
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.1.0     
+## ── Conflicts ────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(p8105.datasets)
+library(plotly)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;
+## 
+## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot
+## 
+## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter
+## 
+## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<pre class="r"><code>data(&quot;rest_inspec&quot;)</code></pre>
+<pre class="r"><code>res_df = rest_inspec |&gt; 
+  filter(boro == &quot;Manhattan&quot;, 
+         critical_flag == &quot;Y&quot;, 
+         substr(inspection_date,1,4) == &quot;2019&quot;,
+         !is.na(grade_date),
+         !is.na(violation_description),
+         !is.na(latitude),
+         !is.na(longitude),
+         startsWith(`inspection_type`, &quot;Pre-permit&quot;)) |&gt; 
+  select(-camis, -boro)</code></pre>
 </div>
 
 

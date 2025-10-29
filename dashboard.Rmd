@@ -2,10 +2,29 @@
 title: "Dashboard"
 ---
 
-### About this site
+### NYC Restaurant Inspections
 
-Create a flexdashboard using plotly for that includes at least three distinct plot types (e.g. scatterplots, line plots, bar plots, box plots, etc.). Use one of the following datasets, and load from the p8105.datasets package:
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+data("rest_inspec")
+```
 
-Instacart
-NY NOAA
-NYC Restaurant Inspections
+```{r}
+res_df = rest_inspec |> 
+  filter(boro == "Manhattan", 
+         critical_flag == "Y", 
+         substr(inspection_date,1,4) == "2019",
+         !is.na(grade_date),
+         !is.na(violation_description),
+         !is.na(latitude),
+         !is.na(longitude),
+         startsWith(`inspection_type`, "Pre-permit")) |> 
+  select(-camis, -boro)
+```
+
+```{r}
+
+```
+
