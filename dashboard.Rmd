@@ -1,16 +1,23 @@
 ---
 title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
 ### NYC Restaurant Inspections
 
-```{r}
+```{r setup, include=FALSE}
+library(flexdashboard)
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
 data("rest_inspec")
 ```
-
+Column {data-width=650}
+-----------------------------------------------------------------------
+### Chart A
 ```{r}
 res_df = rest_inspec |> 
   filter(boro == "Manhattan", 
@@ -36,7 +43,9 @@ map_pt = res_df |>
          yaxis = list(title = "Longitude", range = c(-74.1,-73.9)))
 map_pt
 ```
-
+Column {data-width=350}
+-----------------------------------------------------------------------
+### Chart B
 ```{r}
 avg_sc_cuisine = res_df |>
   select(cuisine_description, score) |> 
@@ -50,7 +59,7 @@ avg_sc_cuisine = res_df |>
   layout(showlegend = FALSE)
 avg_sc_cuisine
 ```
-
+### Chart C
 ```{r}
 sc_cuisine_box = res_df |>
   select(cuisine_description, score) |> 
