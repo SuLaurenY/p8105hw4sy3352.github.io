@@ -31,7 +31,9 @@ map_pt = res_df |>
   plot_ly(
     x = ~latitude, y = ~longitude, type = "scatter", 
     mode = "markers", color = ~score, text = ~text_label
-  )
+  ) |> 
+  layout(xaxis = list(title = "Latitude", range = c(40.6,40.9)),
+         yaxis = list(title = "Longitude", range = c(-74.1,-73.9)))
 map_pt
 ```
 
