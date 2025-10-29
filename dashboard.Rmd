@@ -44,7 +44,20 @@ avg_sc_cuisine = res_df |>
     cuisine_description, mean_score)) |> 
   plot_ly(
     x = ~cuisine_description, y = ~mean_score, type = "bar", 
-    hoverinfo = "y", color = ~cuisine_description, colors = "viridis")
+    color = ~cuisine_description, colors = "viridis") |> 
+  layout(showlegend = FALSE)
 avg_sc_cuisine
+```
+
+```{r}
+sc_cuisine_box = res_df |>
+  select(cuisine_description, score) |> 
+  mutate(cuisine_description = fct_reorder(
+    cuisine_description, score)) |> 
+  plot_ly(
+    x = ~cuisine_description, y = ~score, type = "box", 
+    color = ~cuisine_description, colors = "viridis") |> 
+    layout(showlegend = FALSE)
+sc_cuisine_box
 ```
 
