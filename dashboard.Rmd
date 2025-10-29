@@ -35,3 +35,16 @@ map_pt = res_df |>
 map_pt
 ```
 
+```{r}
+avg_sc_cuisine = res_df |>
+  select(cuisine_description, score) |> 
+  group_by(cuisine_description) |> 
+  summarize(mean_score = mean(score, na.rm = TRUE)) |> 
+  mutate(cuisine_description = fct_reorder(
+    cuisine_description, mean_score)) |> 
+  plot_ly(
+    x = ~cuisine_description, y = ~mean_score, type = "bar", 
+    hoverinfo = "y", color = ~cuisine_description, colors = "viridis")
+avg_sc_cuisine
+```
+
