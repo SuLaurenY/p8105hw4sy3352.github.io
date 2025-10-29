@@ -25,6 +25,13 @@ res_df = rest_inspec |>
 ```
 
 ```{r}
-
+map_pt = res_df |> 
+  mutate(text_label = str_c(
+    "Name:", dba, "\nCuisine:", cuisine_description)) |> 
+  plot_ly(
+    x = ~latitude, y = ~longitude, type = "scatter", 
+    mode = "markers", color = ~score, text = ~text_label
+  )
+map_pt
 ```
 
