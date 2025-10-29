@@ -7,7 +7,7 @@ title: "Welcome to Su's Website"
 This website is where you can find my academic and professional experiences, highlight selected projects, and provide ways to connect with me online.
 
 You can find my [resume](resume.html)  
-I made some dashboard for [NYC restaurant directory](dashboard.html)  
+I made some dashboard for [Manhattan Restaurant Pre-permit Inspection Score (2019)](dashboard.html)  
 If you are interested in more of my projects, here's my [GitHub](https://github.com/SuLaurenY)  
 My [linkedin](https://www.linkedin.com/in/su-yan-78b012124/)  
 

@@ -1,5 +1,5 @@
 ---
-title: "Dashboard"
+title: "Manhattan Restaurant Pre-permit Inspection Score (2019)"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -7,6 +7,16 @@ output:
 ---
 
 ### NYC Restaurant Inspections
+
+<div style="max-width:300px">
+Plots on this page shows pre-permit restaurant inspection results in Manhattan during 2019.  
+In chart A, it shows the overall score distribution of each cuisine type.  
+In chart B, the bar represents each cuisine type's average score.  
+In chart C, each point represents a restaurant inspected.  
+The **color corresponds to the inspection score**, where a **higher score indicates more violations or lower compliance**.  
+By visualizing the data through interactive plots, we can have a better idea of Manhattan's restaurant violations.  
+
+</div>
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
@@ -17,7 +27,7 @@ data("rest_inspec")
 ```
 Column {data-width=650}
 -----------------------------------------------------------------------
-### Chart A
+### Chart A - Score Distribution by Cuisine
 ```{r}
 res_df = rest_inspec |> 
   filter(boro == "Manhattan", 
@@ -29,23 +39,22 @@ res_df = rest_inspec |>
          !is.na(longitude),
          startsWith(`inspection_type`, "Pre-permit")) |> 
   select(-camis, -boro)
+
+sc_cuisine_box = res_df |>
+  select(cuisine_description, score) |> 
+  mutate(cuisine_description = fct_reorder(
+    cuisine_description, score, .fun = median, .desc = FALSE)) |> 
+  plot_ly(
+    x = ~cuisine_description, y = ~score, type = "box", 
+    color = ~cuisine_description, colors = "viridis",
+    showlegend = FALSE) |> 
+    layout(xaxis = list(title = "Cuisine Type", tickangle = -45))
+sc_cuisine_box
 ```
 
-```{r}
-map_pt = res_df |> 
-  mutate(text_label = str_c(
-    "Name:", dba, "\nCuisine:", cuisine_description)) |> 
-  plot_ly(
-    x = ~latitude, y = ~longitude, type = "scatter", 
-    mode = "markers", color = ~score, text = ~text_label
-  ) |> 
-  layout(xaxis = list(title = "Latitude", range = c(40.6,40.9)),
-         yaxis = list(title = "Longitude", range = c(-74.1,-73.9)))
-map_pt
-```
 Column {data-width=350}
 -----------------------------------------------------------------------
-### Chart B
+### Chart B - Average Score by Cuisine
 ```{r}
 avg_sc_cuisine = res_df |>
   select(cuisine_description, score) |> 
@@ -55,20 +64,23 @@ avg_sc_cuisine = res_df |>
     cuisine_description, mean_score)) |> 
   plot_ly(
     x = ~cuisine_description, y = ~mean_score, type = "bar", 
-    color = ~cuisine_description, colors = "viridis") |> 
-  layout(showlegend = FALSE)
+    color = ~cuisine_description, colors = "viridis", 
+    showlegend = FALSE) |> 
+  layout(xaxis = list(title = "Cuisine Type", tickangle = -45))
 avg_sc_cuisine
 ```
-### Chart C
+### Chart C - Inspected Restaurant Map
 ```{r}
-sc_cuisine_box = res_df |>
-  select(cuisine_description, score) |> 
-  mutate(cuisine_description = fct_reorder(
-    cuisine_description, score)) |> 
+map_pt = res_df |> 
+  mutate(text_label = str_c(
+    "Name:", dba, "\nCuisine:", cuisine_description)) |> 
   plot_ly(
-    x = ~cuisine_description, y = ~score, type = "box", 
-    color = ~cuisine_description, colors = "viridis") |> 
-    layout(showlegend = FALSE)
-sc_cuisine_box
+    x = ~latitude, y = ~longitude, type = "scatter", 
+    mode = "markers", color = ~score, text = ~text_label, 
+    hoverinfo = "text"
+  ) |> 
+  layout(xaxis = list(title = "Latitude", range = c(40.6,40.9)),
+         yaxis = list(title = "Longitude", range = c(-74.1,-73.9)))
+map_pt
 ```
 
